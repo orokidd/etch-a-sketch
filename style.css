@@ -4,14 +4,15 @@
     box-sizing: border-box;
 }
 
-.square {
-    border: solid 1px red;
-}
-
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: auto;
+    padding: 20px;
+    width: 580px;
+    border-radius: 12px;
+    background-color: rgb(212, 0, 0);
 }
 
 .center-container {

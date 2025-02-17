@@ -14,7 +14,7 @@ for (let i = 1; i <= squareSize * squareSize; i++) {
   squareColor.classList.add("square");
   squareColor.style.width = `${containerWidth / squareSize}px`;
   squareColor.style.height = `${containerWidth / squareSize}px`;
-  squareColor.style.backgroundColor = "blue";
+  squareColor.style.backgroundColor = "white";
 
   squareBlack.appendChild(squareColor);
   container.appendChild(squareBlack);
