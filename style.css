@@ -18,8 +18,8 @@
 .center-container {
     display: flex;
     width: 540px;
-    min-width: 540px;
     flex-wrap: wrap;
+    flex-shrink: 0;
 }
 
 .button-container {

@@ -1,8 +1,7 @@
 const container = document.querySelector(".center-container");
 const containerWidth = container.offsetWidth;
 const initSquareSize = 6;
-const button = document.querySelector("button");
-let color;
+const btnReset = document.querySelector("button");
 
 function createGrid(gridSize) {
   container.innerHTML = "";
@@ -28,6 +27,7 @@ function createGrid(gridSize) {
 
 function hoverEffect() {
   const squares = document.querySelectorAll(".square");
+  let color;
 
   container.addEventListener("mouseenter", () => {
     color = getRandomRGB();
@@ -35,7 +35,6 @@ function hoverEffect() {
 
   squares.forEach((square) => {
     square.addEventListener("mouseenter", () => {
-      // square.style.backgroundColor = color;
       if (square.style.backgroundColor === color) {
         let currentOpacity = parseFloat(
           window.getComputedStyle(square).opacity
@@ -49,17 +48,6 @@ function hoverEffect() {
   });
 }
 
-button.addEventListener("click", () => {
-    let userGridSize = prompt("Enter grid size");
-  
-    if (userGridSize < 1 || userGridSize > 100) {
-      alert("Try again!");
-      return;
-    }
-  
-    createGrid(userGridSize);
-  });
-  
 function getRandomRGB() {
   const r = Math.floor(Math.random() * 256);
   const g = Math.floor(Math.random() * 256);
@@ -67,4 +55,16 @@ function getRandomRGB() {
   return `rgb(${r}, ${g}, ${b})`;
 }
 
+btnReset.addEventListener("click", () => {
+  let selectedGridSize = prompt("Enter grid size");
+
+  if (selectedGridSize < 1 || selectedGridSize > 100) {
+    alert("Try again!");
+    return;
+  }
+
+  createGrid(selectedGridSize);
+});
+
+//   Initiate starting state
 createGrid(initSquareSize);
