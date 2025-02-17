@@ -36,9 +36,7 @@ function hoverEffect() {
   squares.forEach((square) => {
     square.addEventListener("mouseenter", () => {
       if (square.style.backgroundColor === color) {
-        let currentOpacity = parseFloat(
-          window.getComputedStyle(square).opacity
-        );
+        let currentOpacity = parseFloat(square.style.opacity);
         square.style.opacity = `${currentOpacity - 0.1}`;
       } else {
         square.style.opacity = "1";
