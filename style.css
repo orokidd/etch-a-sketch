@@ -16,7 +16,7 @@
 
 .center-container {
     display: flex;
-    width: 640px;
-    height: 640px;;
+    width: 540px;
+    min-width: 540px;
     flex-wrap: wrap;
 }
