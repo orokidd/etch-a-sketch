@@ -4,17 +4,6 @@ const initSquareSize = 6;
 const button = document.querySelector("button");
 let color;
 
-button.addEventListener("click", () => {
-  let userGridSize = prompt("Enter grid size");
-
-  if (userGridSize < 1 || userGridSize > 100) {
-    alert("Try again!");
-    return;
-  }
-
-  createGrid(userGridSize);
-});
-
 function createGrid(gridSize) {
   container.innerHTML = "";
 
@@ -60,6 +49,17 @@ function hoverEffect() {
   });
 }
 
+button.addEventListener("click", () => {
+    let userGridSize = prompt("Enter grid size");
+  
+    if (userGridSize < 1 || userGridSize > 100) {
+      alert("Try again!");
+      return;
+    }
+  
+    createGrid(userGridSize);
+  });
+  
 function getRandomRGB() {
   const r = Math.floor(Math.random() * 256);
   const g = Math.floor(Math.random() * 256);
