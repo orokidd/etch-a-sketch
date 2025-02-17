@@ -1,23 +1,40 @@
 const container = document.querySelector(".center-container");
 const containerWidth = container.offsetWidth;
-const squareSize = 6;
+const initSquareSize = 6;
+const button = document.querySelector("button");
 let color;
 
-for (let i = 1; i <= squareSize * squareSize; i++) {
-  const squareBlack = document.createElement("div");
-  squareBlack.classList.add("black");
-  squareBlack.style.width = `${containerWidth / squareSize}px`;
-  squareBlack.style.height = `${containerWidth / squareSize}px`;
-  squareBlack.style.backgroundColor = "black";
+button.addEventListener("click", () => {
+  let userGridSize = prompt("Enter grid size");
 
-  const squareColor = document.createElement("div");
-  squareColor.classList.add("square");
-  squareColor.style.width = `${containerWidth / squareSize}px`;
-  squareColor.style.height = `${containerWidth / squareSize}px`;
-  squareColor.style.backgroundColor = "white";
+  if (userGridSize < 1 || userGridSize > 100) {
+    alert("Try again!");
+    return;
+  }
 
-  squareBlack.appendChild(squareColor);
-  container.appendChild(squareBlack);
+  createGrid(userGridSize);
+});
+
+function createGrid(gridSize) {
+  container.innerHTML = "";
+
+  for (let i = 1; i <= gridSize * gridSize; i++) {
+    const squareBlack = document.createElement("div");
+    squareBlack.classList.add("black");
+    squareBlack.style.width = `${containerWidth / gridSize}px`;
+    squareBlack.style.height = `${containerWidth / gridSize}px`;
+    squareBlack.style.backgroundColor = "black";
+
+    const squareColor = document.createElement("div");
+    squareColor.classList.add("square");
+    squareColor.style.width = `${containerWidth / gridSize}px`;
+    squareColor.style.height = `${containerWidth / gridSize}px`;
+    squareColor.style.backgroundColor = "white";
+
+    squareBlack.appendChild(squareColor);
+    container.appendChild(squareBlack);
+  }
+  hoverEffect();
 }
 
 function hoverEffect() {
@@ -50,4 +67,4 @@ function getRandomRGB() {
   return `rgb(${r}, ${g}, ${b})`;
 }
 
-hoverEffect();
+createGrid(initSquareSize);
