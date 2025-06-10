@@ -1,7 +1,8 @@
 const container = document.querySelector(".center-container");
 const containerWidth = container.offsetWidth;
-const initSquareSize = 6;
-const btnReset = document.querySelector("button");
+const initSquareSize = 12;
+const btnSize = document.querySelector("#size-button");
+const btnReset = document.querySelector("#reset-button");
 
 function createGrid(gridSize) {
   container.innerHTML = "";
@@ -53,7 +54,16 @@ function getRandomRGB() {
   return `rgb(${r}, ${g}, ${b})`;
 }
 
-btnReset.addEventListener("click", () => {
+function resetGrid() {
+  const squares = document.querySelectorAll(".square");
+
+  squares.forEach((square) => {
+    square.style.backgroundColor = "white"
+    square.style.opacity = "1";
+  })
+}
+
+btnSize.addEventListener("click", () => {
   let selectedGridSize = prompt("Enter grid size");
 
   if (selectedGridSize < 1 || selectedGridSize > 100) {
@@ -63,6 +73,8 @@ btnReset.addEventListener("click", () => {
 
   createGrid(selectedGridSize);
 });
+
+btnReset.addEventListener("click", resetGrid)
 
 //   Initiate starting state
 createGrid(initSquareSize);
