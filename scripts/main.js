@@ -84,8 +84,10 @@ function resetGrid() {
   const squares = document.querySelectorAll(".square");
 
   squares.forEach((square) => {
-    square.style.backgroundColor = "white";
+    square.style.backgroundColor = "#ffffff";
+    square.dataset.color = "#ffffff"
     square.style.opacity = "1";
+    
   });
 }
 
