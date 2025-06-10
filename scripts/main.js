@@ -1,8 +1,15 @@
 const container = document.querySelector(".center-container");
 const containerWidth = container.offsetWidth;
 const initSquareSize = 12;
+let color = "#aed0b0";
+
 const btnSize = document.querySelector("#size-button");
 const btnReset = document.querySelector("#reset-button");
+const btnColor = document.querySelector("#color-picker");
+
+btnColor.addEventListener("input", (e) => {
+  customColor(e.target.value);
+});
 
 function createGrid(gridSize) {
   container.innerHTML = "";
@@ -26,24 +33,43 @@ function createGrid(gridSize) {
   hoverEffect();
 }
 
+function customColor(selectedColor) {
+  color = selectedColor;
+  console.log(color);
+}
+
 function hoverEffect() {
   const squares = document.querySelectorAll(".square");
-  let color;
 
-  container.addEventListener("mouseenter", () => {
-    color = getRandomRGB();
-  });
+  // container.addEventListener("mouseenter", () => {
+  //   color = getRandomRGB();
+  // });
 
   squares.forEach((square) => {
     square.addEventListener("mouseenter", () => {
-      if (square.style.backgroundColor === color) {
-        let currentOpacity = parseFloat(square.style.opacity);
-        square.style.opacity = `${currentOpacity - 0.1}`;
-      } else {
-        square.style.opacity = "1";
-        square.style.backgroundColor = color;
-      }
+      darkeningEffect(square);
     });
+  });
+}
+
+function darkeningEffect(square) {
+  if (square.dataset.color === color) {
+    let currentOpacity = parseFloat(square.style.opacity);
+    square.style.opacity = `${currentOpacity - 0.1}`;
+  } else {
+    square.style.opacity = "1";
+    square.style.backgroundColor = color;
+    square.dataset.color = color;
+  }
+}
+
+function randomColor() {}
+
+function resetEffect() {
+  const squares = document.querySelectorAll(".square");
+
+  squares.forEach((square) => {
+    square.removeEventListener("click");
   });
 }
 
@@ -58,9 +84,9 @@ function resetGrid() {
   const squares = document.querySelectorAll(".square");
 
   squares.forEach((square) => {
-    square.style.backgroundColor = "white"
+    square.style.backgroundColor = "white";
     square.style.opacity = "1";
-  })
+  });
 }
 
 btnSize.addEventListener("click", () => {
@@ -74,7 +100,7 @@ btnSize.addEventListener("click", () => {
   createGrid(selectedGridSize);
 });
 
-btnReset.addEventListener("click", resetGrid)
+btnReset.addEventListener("click", resetGrid);
 
 //   Initiate starting state
 createGrid(initSquareSize);
