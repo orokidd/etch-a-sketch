@@ -6,10 +6,7 @@ let color = "#aed0b0";
 const btnSize = document.querySelector("#size-button");
 const btnReset = document.querySelector("#reset-button");
 const btnColor = document.querySelector("#color-picker");
-
-btnColor.addEventListener("input", (e) => {
-  customColor(e.target.value);
-});
+const btnRainbow = document.querySelector("#rainbow-button");
 
 function createGrid(gridSize) {
   container.innerHTML = "";
@@ -30,7 +27,6 @@ function createGrid(gridSize) {
     squareBlack.appendChild(squareColor);
     container.appendChild(squareBlack);
   }
-  hoverEffect();
 }
 
 function customColor(selectedColor) {
@@ -39,20 +35,16 @@ function customColor(selectedColor) {
 }
 
 function hoverEffect() {
+  resetEffect();
   const squares = document.querySelectorAll(".square");
 
-  // container.addEventListener("mouseenter", () => {
-  //   color = getRandomRGB();
-  // });
-
   squares.forEach((square) => {
-    square.addEventListener("mouseenter", () => {
-      darkeningEffect(square);
-    });
+    square.addEventListener("mouseenter", darkeningEffect);
   });
 }
 
-function darkeningEffect(square) {
+function darkeningEffect(event) {
+  const square = event.target;
   if (square.dataset.color === color) {
     let currentOpacity = parseFloat(square.style.opacity);
     square.style.opacity = `${currentOpacity - 0.1}`;
@@ -63,14 +55,34 @@ function darkeningEffect(square) {
   }
 }
 
-function randomColor() {}
-
 function resetEffect() {
   const squares = document.querySelectorAll(".square");
 
   squares.forEach((square) => {
-    square.removeEventListener("click");
+    square.removeEventListener("mouseenter", darkeningEffect);
   });
+
+  squares.forEach((square) => {
+    square.removeEventListener("mouseenter", rainbowEffect);
+  });
+}
+
+function rainbowEffectListener() {
+  resetEffect();
+  const squares = document.querySelectorAll(".square");
+
+  squares.forEach((square) => {
+    square.addEventListener("mouseenter", rainbowEffect);
+  });
+}
+
+function rainbowEffect(event) {
+  const square = event.target;
+  color = getRandomRGB();
+
+  square.style.opacity = "1";
+  square.style.backgroundColor = color;
+  square.dataset.color = color;
 }
 
 function getRandomRGB() {
@@ -85,11 +97,17 @@ function resetGrid() {
 
   squares.forEach((square) => {
     square.style.backgroundColor = "#ffffff";
-    square.dataset.color = "#ffffff"
+    square.dataset.color = "#ffffff";
     square.style.opacity = "1";
-    
   });
 }
+
+btnColor.addEventListener("input", (e) => {
+  customColor(e.target.value);
+  hoverEffect();
+});
+
+btnRainbow.addEventListener("click", rainbowEffectListener);
 
 btnSize.addEventListener("click", () => {
   let selectedGridSize = prompt("Enter grid size");
@@ -100,9 +118,12 @@ btnSize.addEventListener("click", () => {
   }
 
   createGrid(selectedGridSize);
+  hoverEffect();
 });
 
 btnReset.addEventListener("click", resetGrid);
 
-//   Initiate starting state
-createGrid(initSquareSize);
+const init = (() => {
+  createGrid(initSquareSize);
+  hoverEffect();
+})();
