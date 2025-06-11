@@ -7,6 +7,7 @@ const btnSize = document.querySelector("#size-button");
 const btnReset = document.querySelector("#reset-button");
 const btnColor = document.querySelector("#color-picker");
 const btnRainbow = document.querySelector("#rainbow-button");
+const btnEraser = document.querySelector("#eraser-button");
 
 function createGrid(gridSize) {
   container.innerHTML = "";
@@ -65,6 +66,10 @@ function resetEffect() {
   squares.forEach((square) => {
     square.removeEventListener("mouseenter", rainbowEffect);
   });
+
+  squares.forEach((square) => {
+    square.removeEventListener("mouseenter", eraserEffect);
+  });
 }
 
 function rainbowEffectListener() {
@@ -83,6 +88,23 @@ function rainbowEffect(event) {
   square.style.opacity = "1";
   square.style.backgroundColor = color;
   square.dataset.color = color;
+}
+
+function eraserListener() {
+  resetEffect();
+  const squares = document.querySelectorAll(".square");
+
+  squares.forEach((square) => {
+    square.addEventListener("mouseenter", eraserEffect);
+  });
+}
+
+function eraserEffect(event) {
+  const square = event.target;
+
+  square.style.opacity = "1";
+  square.style.backgroundColor = "#ffffff";
+  square.dataset.color = "#ffffff";
 }
 
 function getRandomRGB() {
@@ -108,6 +130,8 @@ btnColor.addEventListener("input", (e) => {
 });
 
 btnRainbow.addEventListener("click", rainbowEffectListener);
+
+btnEraser.addEventListener("click", eraserListener);
 
 btnSize.addEventListener("click", () => {
   let selectedGridSize = prompt("Enter grid size");
