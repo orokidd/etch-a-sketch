@@ -31,3 +31,7 @@ button {
     padding: 6px;
     margin-bottom: 24px;
 }
+
+#toggle-darken-button.disabled {
+    border: 1px solid red;
+}

@@ -1,5 +1,3 @@
-const container = document.querySelector(".center-container");
-const containerWidth = container.offsetWidth;
 const initSquareSize = 12;
 let color = "#aed0b0";
 
@@ -8,8 +6,13 @@ const btnReset = document.querySelector("#reset-button");
 const btnColor = document.querySelector("#color-picker");
 const btnRainbow = document.querySelector("#rainbow-button");
 const btnEraser = document.querySelector("#eraser-button");
+const btnDarken = document.querySelector("#toggle-darken-button");
+
+let stateDarkening = true;
 
 function createGrid(gridSize) {
+  const container = document.querySelector(".center-container");
+  const containerWidth = container.offsetWidth;
   container.innerHTML = "";
 
   for (let i = 1; i <= gridSize * gridSize; i++) {
@@ -46,13 +49,23 @@ function hoverEffect() {
 
 function darkeningEffect(event) {
   const square = event.target;
-  if (square.dataset.color === color) {
+  if (square.dataset.color === color && stateDarkening) {
     let currentOpacity = parseFloat(square.style.opacity);
     square.style.opacity = `${currentOpacity - 0.1}`;
   } else {
     square.style.opacity = "1";
     square.style.backgroundColor = color;
     square.dataset.color = color;
+  }
+}
+
+function toggleDarkeningEffect() {
+  stateDarkening = !stateDarkening;
+
+  if (!stateDarkening) {
+    btnDarken.classList.add("disabled")
+  } else {
+    btnDarken.classList.remove("disabled")
   }
 }
 
@@ -132,6 +145,8 @@ btnColor.addEventListener("input", (e) => {
 btnRainbow.addEventListener("click", rainbowEffectListener);
 
 btnEraser.addEventListener("click", eraserListener);
+
+btnDarken.addEventListener("click", toggleDarkeningEffect);
 
 btnSize.addEventListener("click", () => {
   let selectedGridSize = prompt("Enter grid size");
