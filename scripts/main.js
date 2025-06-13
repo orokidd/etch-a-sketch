@@ -61,12 +61,11 @@ function darkeningEffect(event) {
 
 function toggleDarkeningEffect() {
   stateDarkening = !stateDarkening;
+  toggleActiveButtonClass(btnDarken)
+}
 
-  if (!stateDarkening) {
-    btnDarken.classList.add("disabled")
-  } else {
-    btnDarken.classList.remove("disabled")
-  }
+function toggleActiveButtonClass(button) {
+  button.classList.toggle("active");
 }
 
 function resetEffect() {
@@ -87,7 +86,9 @@ function resetEffect() {
 
 function rainbowEffectListener() {
   resetEffect();
+  
   const squares = document.querySelectorAll(".square");
+  
 
   squares.forEach((square) => {
     square.addEventListener("mouseenter", rainbowEffect);
