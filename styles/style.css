@@ -83,21 +83,39 @@ button:active {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
+.color-picker-container {
+    background-color: rgb(255, 178, 45);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 16px;
+    color: white;
+    transition: all 0.2s ease;
+}
+
+.color-picker-container:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+}
+
+label {
+    cursor: pointer;
+}
+
 #color-picker {
-    width: 45px;
-    height: 38px;
+    width: 44px;
+    height: 24px;
     padding: 2px;
     border: none;
+    margin: 0 6px;
     border-radius: 6px;
     cursor: pointer;
     background: none;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: all 0.2s ease;
-}
-
-#color-picker:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 #rainbow-button {
@@ -124,24 +142,12 @@ button:active {
     background-color: #ff4757;
 }
 
-#eraser-button:hover {
-    background-color: #ff3838;
-}
-
 #reset-button {
     background-color: #5352ed;
 }
 
-#reset-button:hover {
-    background-color: #4834d4;
-}
-
 #size-button {
     background-color: #26de81;
-}
-
-#size-button:hover {
-    background-color: #20bf6b;
 }
 
 #toggle-darken-button.active {

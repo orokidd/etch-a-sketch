@@ -1,4 +1,3 @@
-const initSquareSize = 12;
 let color = "#aed0b0";
 
 const btnSize = document.querySelector("#size-button");
@@ -164,6 +163,6 @@ btnSize.addEventListener("click", () => {
 btnReset.addEventListener("click", resetGrid);
 
 const init = (() => {
-  createGrid(initSquareSize);
+  createGrid(12);
   hoverEffect();
 })();
