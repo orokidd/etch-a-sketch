@@ -186,9 +186,15 @@ label {
         font-size: 12px;
         margin-bottom: 16px;
     }
+
+    .color-picker-container {
+        padding: 8px 12px;
+        font-size: 12px;
+        margin-bottom: 16px;
+}
     
     #color-picker {
-        width: 36px;
-        height: 32px;
+        width: 44px;
+        height: 22px;
     }
 }
