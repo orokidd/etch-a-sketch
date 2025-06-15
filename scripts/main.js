@@ -1,12 +1,12 @@
-let color = "#aed0b0";
-
 const btnSize = document.querySelector("#size-button");
 const btnReset = document.querySelector("#reset-button");
 const btnColor = document.querySelector("#color-picker");
 const btnRainbow = document.querySelector("#rainbow-button");
 const btnEraser = document.querySelector("#eraser-button");
+const btnBrush = document.querySelector("#brush-button");
 const btnDarken = document.querySelector("#toggle-darken-button");
 
+let color = "#aed0b0";
 let stateDarkening = true;
 
 function createGrid(gridSize) {
@@ -34,7 +34,6 @@ function createGrid(gridSize) {
 
 function customColor(selectedColor) {
   color = selectedColor;
-  console.log(color);
 }
 
 function hoverEffect() {
@@ -96,11 +95,20 @@ function rainbowEffectListener() {
 
 function rainbowEffect(event) {
   const square = event.target;
-  color = getRandomRGB();
+  let rainbow = getRandomRGB();
 
   square.style.opacity = "1";
-  square.style.backgroundColor = color;
-  square.dataset.color = color;
+  square.style.backgroundColor = rainbow;
+  square.dataset.color = rainbow;
+}
+
+function eraserListener() {
+  resetEffect();
+  const squares = document.querySelectorAll(".square");
+
+  squares.forEach((square) => {
+    square.addEventListener("mouseenter", eraserEffect);
+  });
 }
 
 function eraserListener() {
@@ -141,6 +149,8 @@ btnColor.addEventListener("input", (e) => {
   customColor(e.target.value);
   hoverEffect();
 });
+
+btnBrush.addEventListener("click", hoverEffect);
 
 btnRainbow.addEventListener("click", rainbowEffectListener);
 

@@ -46,7 +46,7 @@ body {
     margin-top: 10px;
 }
 
-button {
+button, .color-picker-container {
     padding: 10px 16px;
     margin-bottom: 24px;
     border: none;
@@ -55,33 +55,19 @@ button {
     color: white;
     font-size: 14px;
     font-weight: 500;
-    cursor: pointer;
     transition: all 0.2s ease;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-button:hover {
-    background-color: #5a5a5a;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+button:hover, .color-picker-container:hover {
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .color-picker-container {
     background-color: rgb(255, 178, 45);
-    margin-bottom: 24px;
     display: flex;
     align-items: center;
-    border: none;
-    border-radius: 6px;
-    padding: 10px 16px;
-    color: white;
-    transition: all 0.2s ease;
-}
-
-.color-picker-container:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    cursor: pointer;
 }
 
 label {
@@ -132,14 +118,11 @@ label {
 #toggle-darken-button.active {
     background-color: #6b6b6b;
     color: #ccc;
-    transform: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #toggle-darken-button.active:hover {
     background-color: #666;
-    transform: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* Responsive design */
