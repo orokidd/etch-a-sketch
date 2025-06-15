@@ -65,7 +65,7 @@ button:hover, .color-picker-container:hover {
 }
 
 .color-picker-container {
-    background-color: rgb(255, 178, 45);
+    background-color: rgb(255, 149, 28);
     display: flex;
     align-items: center;
 }
@@ -80,10 +80,8 @@ label {
     padding: 2px;
     border: none;
     margin: 0 6px;
-    border-radius: 6px;
     cursor: pointer;
     background: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: all 0.2s ease;
 }
 
