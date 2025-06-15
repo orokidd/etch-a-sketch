@@ -91,10 +91,6 @@ label {
     animation: rainbow-shift 2s ease-in-out infinite;
 }
 
-#rainbow-button:hover {
-    animation-duration: 1s;
-}
-
 @keyframes rainbow-shift {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
